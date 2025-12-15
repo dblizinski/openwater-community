@@ -306,9 +306,10 @@
         
         /* Contribution Opportunities */
         .opportunities {
-            background: var(--light-bg);
+            background: white;
             border-radius: 12px;
-            padding: 40px 0px;  /* ← No horizontal padding! */
+            padding: 30px 0px;
+            margin-top: 20px;
         }
         
         .opportunity-filters {
@@ -316,6 +317,7 @@
             gap: 10px;
             margin-bottom: 30px;
             flex-wrap: wrap;
+            padding: 0 30px;
         }
         
         .filter-btn {
@@ -338,6 +340,7 @@
         .opportunity-list {
             display: grid;
             gap: 20px;
+            padding: 0 30px;
         }
         
         .opportunity-item {
@@ -541,7 +544,6 @@
             <div style="display: flex; align-items: center; gap: 12px;">
                 <a href="index.html" style="text-decoration: none; display: flex; align-items: center; gap: 12px;">
                     <img src="openwater-logo.png" alt="Openwater" style="height: 40px; width: auto;" />
-                    <!-- <span style="font-size: 1.5rem; font-weight: 700; color: var(--primary-teal);">Openwater</span> -->
                 </a>
             </div>
             <ul style="display: flex; gap: 30px; list-style: none; margin: 0; padding: 0;">
@@ -690,10 +692,10 @@ print(f"Focal volume: {result.focal_volume} mm³")</code></pre>
     </section>
 
     <!-- Contribution Opportunities -->
-    <section class="section" style="background: var(--light-bg); margin: 0; padding: 80px 20px;">
+    <section class="section" style="background: var(--light-bg);">
         <h2 class="section-title">Contribution Opportunities</h2>
         <p class="section-subtitle">Find issues to work on, earn bounties, and apply for grants</p>
-    
+        
         <div class="opportunities">
             <div class="opportunity-filters">
                 <button class="filter-btn active">All</button>
@@ -702,44 +704,44 @@ print(f"Focal volume: {result.focal_volume} mm³")</code></pre>
                 <button class="filter-btn">Bounties</button>
                 <button class="filter-btn">Grants</button>
             </div>
-        
-        <div class="opportunity-list">
-            <div class="opportunity-item bounty">
-                <div>
-                    <div class="opportunity-header">
-                        <span class="tag good-first">Good First Issue</span>
-                        <span class="tag bounty-tag">Bounty: $500</span>
-                        <span class="tag">Python</span>
-                    </div>
-                    <h3 class="opportunity-title">Add unit tests for pulse sequence validation</h3>
-                    <p class="opportunity-desc">We need comprehensive unit tests for the pulse sequence validation module.</p>
-                    <div class="opportunity-meta">
-                        <span>📁 OpenLIFU-python</span>
-                        <span>💬 3 comments</span>
-                    </div>
-                </div>
-                <div class="opportunity-reward">
-                    <div class="reward-amount">$500</div>
-                    <div class="reward-label">Bounty</div>
-                    <button class="btn btn-primary" style="margin-top: 15px; padding: 8px 16px; font-size: 0.9rem;">View Issue →</button>
-                </div>
-            </div>
             
-            <div class="opportunity-item grant">
-                <div>
-                    <div class="opportunity-header">
-                        <span class="tag" style="background: #D1FAE5; color: #065F46;">Community Grant</span>
-                        <span class="tag">Research</span>
+            <div class="opportunity-list">
+                <div class="opportunity-item bounty">
+                    <div>
+                        <div class="opportunity-header">
+                            <span class="tag good-first">Good First Issue</span>
+                            <span class="tag bounty-tag">Bounty: $500</span>
+                            <span class="tag">Python</span>
+                        </div>
+                        <h3 class="opportunity-title">Add unit tests for pulse sequence validation</h3>
+                        <p class="opportunity-desc">We need comprehensive unit tests for the pulse sequence validation module.</p>
+                        <div class="opportunity-meta">
+                            <span>📁 OpenLIFU-python</span>
+                            <span>💬 3 comments</span>
+                        </div>
                     </div>
-                    <h3 class="opportunity-title">Develop AI-powered pulse sequence optimization</h3>
-                    <p class="opportunity-desc">Research grant to develop machine learning algorithms that automatically optimize pulse sequences.</p>
-                    <div class="opportunity-meta">
-                        <span>🎯 Major Project</span>
-                        <span>⏱️ 3-6 months</span>
+                    <div class="opportunity-reward">
+                        <div class="reward-amount">$500</div>
+                        <div class="reward-label">Bounty</div>
+                        <button class="btn btn-primary" style="margin-top: 15px; padding: 8px 16px; font-size: 0.9rem;">View Issue →</button>
                     </div>
                 </div>
-                <div class="opportunity-reward">
-                    <div class="reward-amount">$10K</div>
+                
+                <div class="opportunity-item grant">
+                    <div>
+                        <div class="opportunity-header">
+                            <span class="tag" style="background: #D1FAE5; color: #065F46;">Community Grant</span>
+                            <span class="tag">Research</span>
+                        </div>
+                        <h3 class="opportunity-title">Develop AI-powered pulse sequence optimization</h3>
+                        <p class="opportunity-desc">Research grant to develop machine learning algorithms that automatically optimize pulse sequences.</p>
+                        <div class="opportunity-meta">
+                            <span>🎯 Major Project</span>
+                            <span>⏱️ 3-6 months</span>
+                        </div>
+                    </div>
+                    <div class="opportunity-reward">
+                        <div class="reward-amount">$10K</div>
                         <div class="reward-label">Grant</div>
                         <button class="btn btn-primary" style="margin-top: 15px; padding: 8px 16px; font-size: 0.9rem; background: var(--success-green);">Apply →</button>
                     </div>
