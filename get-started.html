@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Started - Openwater Community</title>
+    <style>
+        :root {
+            --deep-navy: #0A2540;
+            --ocean-blue: #164E63;
+            --primary-teal: #0891B2;
+            --bright-cyan: #06B6D4;
+            --aqua-light: #22D3EE;
+            --aqua-bright: #67E8F9;
+            --light-bg: #F0F9FF;
+            --text-primary: #0F172A;
+            --text-secondary: #475569;
+            --border-color: #E0F2FE;
+            --success-green: #10B981;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+        }
+        
+        /* Hero with Brand Image */
+        .onboarding-hero {
+            background-image: url('openwater-3.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: white;
+            padding: 120px 20px 80px;
+            position: relative;
+            overflow: hidden;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .onboarding-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, 
+                rgba(10, 37, 64, 0.8) 0%, 
+                rgba(22, 78, 99, 0.85) 50%,
+                rgba(8, 145, 178, 0.8) 100%
+            );
+            z-index: 1;
+        }
+        
+        .hero-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+        
+        .onboarding-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        }
+        
+        .onboarding-hero p {
+            font-size: 1.4rem;
+            opacity: 0.95;
+            margin-bottom: 2rem;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        
+        .hero-stat {
+            text-align: center;
+        }
+        
+        .hero-stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            display: block;
+        }
+        
+        .hero-stat-label {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+        
+        .section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--deep-navy);
+            text-align: center;
+        }
+        
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+        
+        /* Path Selection Cards */
+        .path-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+        
+        .path-card {
+            background: white;
+            border: 3px solid var(--border-color);
+            border-radius: 16px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .path-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--bright-cyan);
+            box-shadow: 0 15px 40px rgba(8, 145, 178, 0.2);
+        }
+        
+        .path-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-teal), var(--bright-cyan));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2.5rem;
+            box-shadow: 0 8px 20px rgba(8, 145, 178, 0.25);
+        }
+        
+        .path-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--deep-navy);
+        }
+        
+        .path-card p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .path-card ul {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 20px;
+        }
+        
+        .path-card li {
+            padding: 8px 0 8px 25px;
+            position: relative;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+        
+        .path-card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--bright-cyan);
+            font-weight: bold;
+        }
+        
+        /* Quickstart Guide */
+        .quickstart {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(8, 145, 178, 0.08);
+        }
+        
+        .step {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+            padding-bottom: 40px;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .step:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-teal), var(--bright-cyan));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+            box-shadow: 0 8px 20px rgba(8, 145, 178, 0.2);
+            flex-shrink: 0;
+        }
+        
+        .step-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--deep-navy);
+        }
+        
+        .step-content p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+        
+        .step-details {
+            background: var(--light-bg);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 15px;
+        }
+        
+        .step-details h4 {
+            font-size: 1rem;
+            margin-bottom: 10px;
+            color: var(--deep-navy);
+        }
+        
+        .step-action {
+            display: inline-block;
+            background: var(--primary-teal);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .step-action:hover {
+            background: var(--bright-cyan);
+            color: var(--deep-navy);
+            transform: translateX(5px);
+        }
+        
+        /* Code Block */
+        .code-block {
+            background: #1E293B;
+            color: #E2E8F0;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            margin: 15px 0;
+            border-left: 4px solid var(--bright-cyan);
+        }
+        
+        /* Checklist */
+        .checklist {
+            background: var(--light-bg);
+            border-radius: 12px;
+            padding: 40px;
+        }
+        
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border: 2px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+        
+        .checklist-item:hover {
+            border-color: var(--bright-cyan);
+            box-shadow: 0 4px 15px rgba(8, 145, 178, 0.1);
+        }
+        
+        .checkbox {
+            width: 30px;
+            height: 30px;
+            border: 3px solid var(--border-color);
+            border-radius: 8px;
+            cursor: pointer;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .checkbox:hover {
+            border-color: var(--bright-cyan);
+            background: var(--light-bg);
+        }
+        
+        .checklist-text {
+            flex: 1;
+        }
+        
+        .checklist-text h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+            color: var(--deep-navy);
+        }
+        
+        .checklist-text p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+        
+        /* FAQ */
+        .faq {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background: white;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            padding: 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--deep-navy);
+            font-size: 1.1rem;
+        }
+        
+        .faq-question:hover {
+            background: var(--light-bg);
+        }
+        
+        .faq-answer {
+            padding: 0 25px 25px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+        
+        .btn {
+            padding: 14px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            font-size: 1rem;
+        }
+        
+        .btn-primary {
+            background: var(--bright-cyan);
+            color: var(--deep-navy);
+        }
+        
+        .btn-primary:hover {
+            background: var(--aqua-light);
+            transform: translateY(-2px);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: var(--primary-teal);
+            border: 2px solid var(--primary-teal);
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary-teal);
+            color: white;
+        }
+        
+        .video-container {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(8, 145, 178, 0.08);
+            text-align: center;
+        }
+        
+        .video-placeholder {
+            width: 100%;
+            height: 400px;
+            background: var(--light-bg);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--primary-teal);
+            margin-bottom: 20px;
+            border: 2px solid var(--border-color);
+        }
+        
+        @media (max-width: 768px) {
+            .onboarding-hero {
+                padding: 100px 20px 60px;
+                min-height: 400px;
+            }
+            
+            .onboarding-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .path-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .step {
+                grid-template-columns: 1fr;
+            }
+            
+            .step-number {
+                margin: 0 auto 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Onboarding Hero with Brand Image -->
+    <section class="onboarding-hero">
+        <div class="hero-container">
+            <h1>Start Your Openwater Journey</h1>
+            <p>From first contribution to core team member in 5 simple steps</p>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <span class="hero-stat-number">5 min</span>
+                    <span class="hero-stat-label">To First Contribution</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-number">2,000+</span>
+                    <span class="hero-stat-label">Active Developers</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-number">24/7</span>
+                    <span class="hero-stat-label">Community Support</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Choose Your Path -->
+    <section class="section">
+        <h2 class="section-title">Choose Your Path</h2>
+        <p class="section-subtitle">Select the contribution path that best matches your skills and interests</p>
+        
+        <div class="path-grid">
+            <div class="path-card">
+                <div class="path-icon">💻</div>
+                <h3>Write Code</h3>
+                <p>Contribute to OpenLIFU and OpenMOTION platforms</p>
+                <ul>
+                    <li>Fix bugs & add features</li>
+                    <li>Python, C++, Kotlin</li>
+                    <li>Earn bounties ($100-$2K)</li>
+                    <li>Build your portfolio</li>
+                </ul>
+                <a href="#quickstart" class="btn btn-primary">Get Started →</a>
+            </div>
+            
+            <div class="path-card">
+                <div class="path-icon">🔬</div>
+                <h3>Conduct Research</h3>
+                <p>Collaborate on clinical studies and publications</p>
+                <ul>
+                    <li>Access research platforms</li>
+                    <li>Publish open findings</li>
+                    <li>Apply for grants ($2K-$10K)</li>
+                    <li>Co-author with community</li>
+                </ul>
+                <a href="#" class="btn btn-primary">Partner With Us →</a>
+            </div>
+            
+            <div class="path-card">
+                <div class="path-icon">🎨</div>
+                <h3>Build Applications</h3>
+                <p>Create tools and extensions for the ecosystem</p>
+                <ul>
+                    <li>3D Slicer extensions</li>
+                    <li>Data visualization tools</li>
+                    <li>Clinical workflows</li>
+                    <li>Integration plugins</li>
+                </ul>
+                <a href="#" class="btn btn-primary">View Examples →</a>
+            </div>
+            
+            <div class="path-card">
+                <div class="path-icon">📚</div>
+                <h3>Improve Docs</h3>
+                <p>Help others learn with better documentation</p>
+                <ul>
+                    <li>Write tutorials</li>
+                    <li>Create examples</li>
+                    <li>Fix errors & typos</li>
+                    <li>Translate content</li>
+                </ul>
+                <a href="#" class="btn btn-primary">Start Writing →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5-Minute Quickstart -->
+    <section class="section" id="quickstart">
+        <h2 class="section-title">5-Minute Quickstart Guide</h2>
+        <p class="section-subtitle">Make your first contribution in just 5 minutes</p>
+        
+        <div class="quickstart">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>Join the Community on Discord</h3>
+                    <p>Connect with 2,000+ developers, researchers, and clinicians building open-source medical devices. Introduce yourself in the #introductions channel.</p>
+                    <div class="step-details">
+                        <h4>What you'll find:</h4>
+                        • #general - Community discussions<br>
+                        • #help - Get technical support<br>
+                        • #showcase - Share your work<br>
+                        • #opportunities - Bounties & grants
+                    </div>
+                    <a href="#" class="step-action">Join Discord Community →</a>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>Star & Fork the Repository</h3>
+                    <p>Get the code and set up your development environment. We have 48 repositories to explore.</p>
+                    <div class="code-block">
+# Clone OpenLIFU Python repository
+git clone https://github.com/OpenwaterHealth/OpenLIFU-python.git
+cd OpenLIFU-python
+
+# Add upstream remote
+git remote add upstream https://github.com/OpenwaterHealth/OpenLIFU-python.git
+                    </div>
+                    <a href="#" class="step-action">View on GitHub →</a>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Set Up Your Dev Environment</h3>
+                    <p>Choose between Docker (recommended) or local installation. Both take less than 5 minutes.</p>
+                    <div class="step-details">
+                        <h4>Option A: Docker (Easiest)</h4>
+                        <div class="code-block">
+# Pull the development container
+docker pull openwaterhealth/dev-env:latest
+
+# Run the container
+docker run -it openwaterhealth/dev-env
+                        </div>
+                        <h4>Option B: Local Setup</h4>
+                        <div class="code-block">
+# Create virtual environment
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Verify installation
+pytest tests/
+                        </div>
+                    </div>
+                    <a href="#" class="step-action">Full Setup Guide →</a>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h3>Find Your First Issue</h3>
+                    <p>Browse 25+ beginner-friendly issues tagged with "good first issue". Pick one that matches your skills.</p>
+                    <div class="step-details">
+                        <h4>Issue Categories:</h4>
+                        <strong>🐛 Bug Fixes</strong> - Fix issues in existing code<br>
+                        <strong>📚 Documentation</strong> - Improve guides and tutorials<br>
+                        <strong>✨ Features</strong> - Add new capabilities<br>
+                        <strong>🧪 Testing</strong> - Write unit and integration tests
+                    </div>
+                    <a href="#" class="step-action">Browse Good First Issues →</a>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                    <h3>Make Your First Contribution</h3>
+                    <p>Create a branch, make your changes, and submit a pull request. Our team reviews PRs within 48 hours.</p>
+                    <div class="code-block">
+# Create a feature branch
+git checkout -b fix/issue-123
+
+# Make your changes and commit
+git add .
+git commit -m "Fix: Resolve pulse sequence validation bug (#123)"
+
+# Push to your fork
+git push origin fix/issue-123
+
+# Open PR on GitHub
+# Title: "Fix: Resolve pulse sequence validation bug"
+# Description: Reference issue #123, explain your changes
+                    </div>
+                    <div class="step-details">
+                        <h4>What happens next:</h4>
+                        • Automated tests run on your PR<br>
+                        • CLA signature required (automated)<br>
+                        • Code review by maintainers<br>
+                        • Merge and celebration! 🎉
+                    </div>
+                    <a href="#" class="step-action">View PR Template →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Onboarding Checklist -->
+    <section class="section" style="background: var(--light-bg); margin: 0; padding: 80px 20px;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h2 class="section-title">Community Onboarding Checklist</h2>
+            <p class="section-subtitle">Complete these steps to become a fully integrated community member</p>
+            
+            <div class="checklist">
+                <div class="checklist-item">
+                    <div class="checkbox"></div>
+                    <div class="checklist-text">
+                        <h4>Join Discord Server</h4>
+                        <p>Connect with the community and introduce yourself in #introductions</p>
+                    </div>
+                </div>
+                
+                <div class="checklist-item">
+                    <div class="checkbox"></div>
+                    <div class="checklist-text">
+                        <h4>Star OpenLIFU-python on GitHub</h4>
+                        <p>Show your support and get notifications about new releases</p>
+                    </div>
+                </div>
+                
+                <div class="checklist-item">
+                    <div class="checkbox"></div>
+                    <div class="checklist-text">
+                        <h4>Sign the Contributor License Agreement (CLA)</h4>
+                        <p>Required for all contributions - quick automated process</p>
+                    </div>
+                </div>
+                
+                <div class="checklist-item">
+                    <div class="checkbox"></div>
+                    <div class="checklist-text">
+                        <h4>Set Up Development Environment</h4>
+                        <p>Docker or local setup - verify with pytest</p>
+                    </div>
+                </div>
+                
+                <div class="checklist-item">
+                    <div class="checkbox"></div>
+                    <div class="checklist-text">
+                        <h4>Complete "Hello World" Tutorial</h4>
+                        <p>Run your first OpenLIFU simulation in 5 minutes</p>
+                    </div>
+                </div>
+                
+                <div class="checklist-item">
+                    <div class="checkbox"></div>
+                    <div class="checklist-text">
+                        <h4>Introduce Yourself in Discord</h4>
+                        <p>Share your background, interests, and what you'd like to work on</p>
+                    </div>
+                </div>
+                
+                <div class="checklist-item">
+                    <div class="checkbox"></div>
+                    <div class="checklist-text">
+                        <h4>Attend Community Office Hours</h4>
+                        <p>Weekly calls every Wednesday at 2pm PT - meet the team</p>
+                    </div>
+                </div>
+                
+                <div class="checklist-item">
+                    <div class="checkbox"></div>
+                    <div class="checklist-text">
+                        <h4>Subscribe to Monthly Newsletter</h4>
+                        <p>Stay updated on community news, opportunities, and events</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Walkthrough -->
+    <section class="section">
+        <h2 class="section-title">Video Walkthrough</h2>
+        <p class="section-subtitle">Watch our 10-minute guide to making your first contribution</p>
+        
+        <div class="video-container">
+            <div class="video-placeholder">
+                ▶️
+            </div>
+            <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--deep-navy);">From Zero to First Pull Request</h3>
+            <p style="color: var(--text-secondary); margin-bottom: 20px;">A complete walkthrough of setting up your environment, finding an issue, and submitting your first PR</p>
+            <a href="#" class="btn btn-primary">Watch on YouTube →</a>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" style="background: var(--light-bg); margin: 0; padding: 80px 20px;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <p class="section-subtitle">Everything you need to know to get started</p>
+            
+            <div class="faq">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Do I need medical device experience to contribute?
+                        <span style="color: var(--primary-teal);">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Not at all! While medical device knowledge is helpful, many contributions don't require it. We have "good first issue" tags specifically for newcomers, covering documentation, testing, and general software development. Our community is here to help you learn.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How long does it take to get my PR reviewed?
+                        <span style="color: var(--primary-teal);">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Most pull requests receive an initial review within 48 hours. Complex PRs may take longer, but we always acknowledge submissions quickly. If you haven't heard back in 3 days, feel free to ping in Discord.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What is the CLA and why do I need to sign it?
+                        <span style="color: var(--primary-teal);">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        The Contributor License Agreement (CLA) ensures that your contributions can be used in the open-source project while protecting both you and Openwater legally. It's a standard practice in open-source projects. The process is automated and takes less than 2 minutes.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Can I earn money contributing to Openwater?
+                        <span style="color: var(--primary-teal);">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Yes! We offer bounties ranging from $100-$2,000 for specific issues, and community grants from $2,000-$10,000 for larger projects. Check our "opportunities" section for current paid work available.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What programming languages do I need to know?
+                        <span style="color: var(--primary-teal);">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Primary languages are Python and C++, but we also have Kotlin (Android apps), JavaScript (web interfaces), and documentation work that requires no coding. Start with whatever language you're comfortable with.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Where can I get help if I'm stuck?
+                        <span style="color: var(--primary-teal);">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Multiple support channels: Discord #help channel (fastest response), GitHub issues, weekly office hours, and email support. Our community is very responsive and welcoming to newcomers.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Next Steps CTA -->
+    <section class="section">
+        <div style="background-image: url('openwater-3.png'); background-size: cover; background-position: center; color: white; padding: 60px 40px; border-radius: 16px; text-align: center; position: relative; overflow: hidden;">
+            <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10, 37, 64, 0.85) 0%, rgba(8, 145, 178, 0.85) 100%); z-index: 1;"></div>
+            <div style="position: relative; z-index: 2;">
+                <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Ready to Start Contributing?</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.95;">Choose how you'd like to get started today</p>
+                <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-bottom: 30px;">
+                    <a href="developers.html" class="btn btn-primary">View Developer Resources</a>
+                    <a href="mailto:community@openwater.health" class="btn" style="background: rgba(255,255,255,0.1); border: 2px solid var(--aqua-light); color: white;">Schedule 1:1 Onboarding Call</a>
+                    <a href="https://discord.gg/openwater" class="btn" style="background: rgba(255,255,255,0.1); border: 2px solid var(--aqua-light); color: white;">Join Discord</a>
+                </div>
+                <p style="font-size: 0.9rem; opacity: 0.8;">
+                    Have questions? Email us at <a href="mailto:community@openwater.health" style="color: var(--bright-cyan);">community@openwater.health</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

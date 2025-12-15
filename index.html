@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Openwater Community Hub - With Brand Image</title>
+    <style>
+        /* Updated Design System - Actual Openwater Brand Colors */
+        :root {
+            /* Primary Palette - From Brand Image */
+            --deep-navy: #0A2540;
+            --ocean-blue: #164E63;
+            --primary-teal: #0891B2;
+            --bright-cyan: #06B6D4;
+            --aqua-light: #22D3EE;
+            --aqua-bright: #67E8F9;
+            
+            /* Neutrals */
+            --white: #FFFFFF;
+            --light-bg: #F0F9FF;
+            --text-primary: #0F172A;
+            --text-secondary: #475569;
+            --border-color: #E0F2FE;
+            --success-green: #10B981;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+        }
+        
+        /* Hero Section with ACTUAL BRAND IMAGE */
+        .hero {
+            /* Using the actual Openwater brand image */
+            background-image: url('openwater-3.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: white;
+            padding: 140px 20px 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Dark gradient overlay to ensure text is readable */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, 
+                rgba(10, 37, 64, 0.7) 0%, 
+                rgba(22, 78, 99, 0.8) 50%,
+                rgba(8, 145, 178, 0.7) 100%
+            );
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+            font-weight: 300;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 14px 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: var(--bright-cyan);
+            color: var(--deep-navy);
+        }
+        
+        .btn-primary:hover {
+            background: var(--aqua-light);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(34, 211, 238, 0.4);
+        }
+        
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 2px solid var(--aqua-light);
+            backdrop-filter: blur(10px);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(34, 211, 238, 0.2);
+            border-color: var(--aqua-bright);
+        }
+        
+        /* Stats Dashboard */
+        .stats-dashboard {
+            background: white;
+            margin: -40px auto 0;
+            max-width: 1200px;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(8, 145, 178, 0.15);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            position: relative;
+            z-index: 3;
+            border-top: 4px solid var(--bright-cyan);
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-teal), var(--bright-cyan), var(--aqua-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+            line-height: 1;
+        }
+        
+        .stat-label {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+            display: block;
+        }
+        
+        .stat-trend {
+            font-size: 0.85rem;
+            color: var(--success-green);
+            margin-top: 0.25rem;
+        }
+        
+        .section {
+            padding: 80px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--deep-navy);
+        }
+        
+        .section-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .engage-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .engage-card {
+            background: white;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .engage-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(8, 145, 178, 0.15);
+            border-color: var(--bright-cyan);
+        }
+        
+        .engage-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-teal), var(--bright-cyan));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2rem;
+            box-shadow: 0 8px 20px rgba(8, 145, 178, 0.2);
+        }
+        
+        .engage-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--deep-navy);
+        }
+        
+        .engage-card ul {
+            list-style: none;
+            text-align: left;
+            margin: 20px 0;
+        }
+        
+        .engage-card li {
+            padding: 8px 0 8px 30px;
+            position: relative;
+            color: var(--text-secondary);
+        }
+        
+        .engage-card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--bright-cyan);
+            font-weight: bold;
+        }
+        
+        .btn-card {
+            margin-top: 20px;
+            background: var(--primary-teal);
+            color: white;
+            padding: 12px 24px;
+            font-size: 1rem;
+        }
+        
+        .btn-card:hover {
+            background: var(--bright-cyan);
+            color: var(--deep-navy);
+        }
+        
+        .activity-feed {
+            background: var(--light-bg);
+            border-radius: 12px;
+            padding: 30px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .activity-item {
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            border-left: 4px solid var(--bright-cyan);
+        }
+        
+        .activity-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--light-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .activity-content h4 {
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+            color: var(--deep-navy);
+        }
+        
+        .activity-content p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        
+        .activity-time {
+            margin-left: auto;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+        
+        .success-stories {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(8, 145, 178, 0.08);
+        }
+        
+        .story-card {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 40px;
+            padding: 40px;
+            border-bottom: 1px solid var(--border-color);
+            align-items: center;
+        }
+        
+        .story-card:last-child {
+            border-bottom: none;
+        }
+        
+        .story-logo {
+            text-align: center;
+        }
+        
+        .story-content h3 {
+            font-size: 1.75rem;
+            margin-bottom: 0.5rem;
+            color: var(--deep-navy);
+        }
+        
+        .story-category {
+            color: var(--primary-teal);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .story-tags {
+            display: flex;
+            gap: 10px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+        
+        .tag {
+            background: var(--light-bg);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--primary-teal);
+            border: 1px solid var(--border-color);
+        }
+        
+        .contributors-wall {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 30px;
+            padding: 40px;
+            background: white;
+            border-radius: 12px;
+        }
+        
+        .contributor-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            height: 100px;
+        }
+        
+        .contributor-logo:hover {
+            border-color: var(--bright-cyan);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(8, 145, 178, 0.12);
+        }
+        
+        .cta-section {
+            /* Also using brand image for CTA */
+            background-image: url('openwater-3.png');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            margin: 80px 0;
+            border-radius: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, 
+                rgba(10, 37, 64, 0.85) 0%, 
+                rgba(8, 145, 178, 0.85) 100%
+            );
+            pointer-events: none;
+        }
+        
+        .cta-section h2,
+        .cta-section p,
+        .cta-section .hero-cta {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .cta-section p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+        
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 10px rgba(8, 145, 178, 0.1);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 2px solid var(--light-bg);
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--deep-navy);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--bright-cyan);
+        }
+        
+        .badge {
+            background: var(--bright-cyan);
+            color: var(--deep-navy);
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            margin-left: 5px;
+            vertical-align: super;
+            font-weight: 700;
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                padding: 100px 20px 60px;
+                min-height: 500px;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .stats-dashboard {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+                padding: 30px 20px;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+            
+            .engage-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .story-card {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="openwater-logo.png" alt="Openwater" height="40">
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="developers.html">Developers</a></li>
+                <li><a href="get-started.html">Get Started</a></li>
+                <li><a href="#community">Community <span class="badge">NEW</span></a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero with Actual Brand Image Background -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Join the Movement to Democratize Medical Devices</h1>
+            <p class="hero-subtitle">Be part of a global community of 2,000+ developers, researchers, and clinicians building the future of open-source healthcare</p>
+            <div class="hero-cta">
+                <a href="https://discord.gg/openwater" class="btn btn-primary">Join Discord</a>
+                <a href="https://github.com/OpenwaterHealth" class="btn btn-secondary">View on GitHub</a>
+                <a href="get-started.html" class="btn btn-secondary">Get Started Guide</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Dashboard -->
+    <div class="stats-dashboard">
+        <div class="stat-item">
+            <span class="stat-number">2,000+</span>
+            <span class="stat-label">Active Developers</span>
+            <span class="stat-trend">↑ 15% MoM</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">487</span>
+            <span class="stat-label">Contributions (Q4 2024)</span>
+            <span class="stat-trend">↑ 23% QoQ</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">50+</span>
+            <span class="stat-label">Universities Participating</span>
+            <span class="stat-trend">New: 8 in Nov</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">3.2K</span>
+            <span class="stat-label">GitHub Stars</span>
+            <span class="stat-trend">↑ 342 this month</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">48</span>
+            <span class="stat-label">Open Source Repositories</span>
+            <span class="stat-trend">Apache 2.0</span>
+        </div>
+    </div>
+
+    <section class="section">
+        <div class="section-header">
+            <h2 class="section-title">How You Can Contribute</h2>
+            <p class="section-subtitle">Whether you're a developer, researcher, or clinician, there's a place for you in the Openwater community</p>
+        </div>
+        
+        <div class="engage-grid">
+            <div class="engage-card">
+                <div class="engage-icon">💻</div>
+                <h3>For Developers</h3>
+                <ul>
+                    <li>Contribute code to OpenLIFU/OpenMOTION</li>
+                    <li>Build extensions & integrations</li>
+                    <li>Earn bounties ($100-$2,000)</li>
+                    <li>Apply for grants ($2K-$10K)</li>
+                    <li>Become a certified developer</li>
+                </ul>
+                <a href="get-started.html" class="btn btn-card">Start Contributing →</a>
+            </div>
+            
+            <div class="engage-card">
+                <div class="engage-icon">🔬</div>
+                <h3>For Researchers</h3>
+                <ul>
+                    <li>Access research platforms</li>
+                    <li>Publish open research</li>
+                    <li>Join collaborative studies</li>
+                    <li>Co-author with community</li>
+                    <li>Apply for research partnerships</li>
+                </ul>
+                <a href="#" class="btn btn-card">Partner With Us →</a>
+            </div>
+            
+            <div class="engage-card">
+                <div class="engage-icon">🏥</div>
+                <h3>For Clinicians</h3>
+                <ul>
+                    <li>Participate in clinical trials</li>
+                    <li>Provide feedback on UX/workflows</li>
+                    <li>Shape real-world use cases</li>
+                    <li>Join clinical advisory board</li>
+                    <li>Collaborate on protocols</li>
+                </ul>
+                <a href="#" class="btn btn-card">Get Involved →</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background: var(--light-bg);">
+        <div class="section-header">
+            <h2 class="section-title">Recent Community Activity</h2>
+            <p class="section-subtitle">See what the community has been building</p>
+        </div>
+        
+        <div class="activity-feed">
+            <div class="activity-item">
+                <div class="activity-icon">🎯</div>
+                <div class="activity-content">
+                    <h4>New OpenLIFU pulse sequence merged</h4>
+                    <p>@sarah_research contributed adaptive neuromodulation sequence</p>
+                </div>
+                <span class="activity-time">2 hours ago</span>
+            </div>
+            
+            <div class="activity-item">
+                <div class="activity-icon">🏆</div>
+                <div class="activity-content">
+                    <h4>Community Grant Awarded</h4>
+                    <p>$5,000 grant to Stanford team for stroke detection algorithm</p>
+                </div>
+                <span class="activity-time">1 day ago</span>
+            </div>
+            
+            <div class="activity-item">
+                <div class="activity-icon">📚</div>
+                <div class="activity-content">
+                    <h4>New Documentation Published</h4>
+                    <p>Complete guide to 3D Slicer integration now available</p>
+                </div>
+                <span class="activity-time">2 days ago</span>
+            </div>
+            
+            <div class="activity-item">
+                <div class="activity-icon">🎉</div>
+                <div class="activity-content">
+                    <h4>1,000th Pull Request Merged!</h4>
+                    <p>Community milestone reached - thank you all contributors</p>
+                </div>
+                <span class="activity-time">3 days ago</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <h2 class="section-title">Community Success Stories</h2>
+            <p class="section-subtitle">Discover how institutions are leveraging Openwater's open-source platforms</p>
+        </div>
+        
+        <div class="success-stories">
+            <div class="story-card">
+                <div class="story-logo">
+                    <span style="color: var(--text-secondary); font-weight: 600;">Mayo Clinic</span>
+                </div>
+                <div class="story-content">
+                    <h3>Mayo Clinic</h3>
+                    <p class="story-category">Clinical AI Integration</p>
+                    <p>Deployed OpenMOTION for stroke detection across 3 comprehensive stroke centers, achieving record sensitivity and specificity in LVO detection.</p>
+                    <div class="story-tags">
+                        <span class="tag">Stroke Detection</span>
+                        <span class="tag">Clinical Trials</span>
+                        <span class="tag">151 Patients</span>
+                    </div>
+                    <a href="#" style="color: var(--primary-teal); font-weight: 600;">Read Case Study →</a>
+                </div>
+            </div>
+            
+            <div class="story-card">
+                <div class="story-logo">
+                    <span style="color: var(--text-secondary); font-weight: 600;">Stanford</span>
+                </div>
+                <div class="story-content">
+                    <h3>Stanford Neuroscience</h3>
+                    <p class="story-category">Research Innovation</p>
+                    <p>Developed custom OpenLIFU protocols for depression treatment, contributing 15+ pulse sequences back to the community.</p>
+                    <div class="story-tags">
+                        <span class="tag">Neuromodulation</span>
+                        <span class="tag">Open Protocols</span>
+                        <span class="tag">FDA Breakthrough</span>
+                    </div>
+                    <a href="#" style="color: var(--primary-teal); font-weight: 600;">Read Case Study →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background: var(--light-bg);">
+        <div class="section-header">
+            <h2 class="section-title">Our Community Contributors</h2>
+            <p class="section-subtitle">Over 50 organizations actively contributing to the Openwater ecosystem</p>
+        </div>
+        
+        <div class="contributors-wall">
+            <div class="contributor-logo"><span style="color: var(--text-secondary);">Mayo Clinic</span></div>
+            <div class="contributor-logo"><span style="color: var(--text-secondary);">Stanford</span></div>
+            <div class="contributor-logo"><span style="color: var(--text-secondary);">Johns Hopkins</span></div>
+            <div class="contributor-logo"><span style="color: var(--text-secondary);">MIT</span></div>
+            <div class="contributor-logo"><span style="color: var(--text-secondary);">UCSF</span></div>
+            <div class="contributor-logo"><span style="color: var(--text-secondary);">Duke</span></div>
+            <div class="contributor-logo"><span style="color: var(--text-secondary);">UPenn</span></div>
+            <div class="contributor-logo"><span style="color: var(--text-secondary);">Brown</span></div>
+            <div class="contributor-logo"><span style="color: var(--text-secondary);">FreeMoCap</span></div>
+            <div class="contributor-logo"><span style="color: var(--text-secondary);">DANDI Archive</span></div>
+            <div class="contributor-logo"><span style="color: var(--text-secondary);">3D Slicer</span></div>
+            <div class="contributor-logo"><span style="color: var(--text-secondary);">OHIF</span></div>
+        </div>
+    </section>
+
+    <!-- CTA with Brand Image -->
+    <section class="cta-section" style="max-width: 1400px; margin: 80px auto;">
+        <h2>Ready to Build the Future of Healthcare?</h2>
+        <p>Join thousands of developers, researchers, and clinicians making medical devices accessible to all</p>
+        <div class="hero-cta">
+            <a href="#" class="btn btn-primary">Get Started Now</a>
+            <a href="#" class="btn btn-secondary">Schedule a Demo</a>
+        </div>
+        <p style="margin-top: 30px; font-size: 0.9rem; opacity: 0.9;">
+            Apache 2.0 Licensed • 48 Open Source Repos • Enterprise Support Available
+        </p>
+    </section>
+
+    <footer style="background: var(--deep-navy); color: white; padding: 60px 20px; text-align: center;">
+        <p>&copy; 2025 Openwater Health. Open Source. Always.</p>
+        <p style="margin-top: 10px; opacity: 0.7;">733 Front Street, Suite C1A, San Francisco, CA 94111</p>
+        <p style="margin-top: 10px;"><a href="mailto:community@openwater.health" style="color: var(--bright-cyan);">community@openwater.health</a></p>
+    </footer>
+
+</body>
+</html>
