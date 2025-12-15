@@ -60,15 +60,6 @@ openwater-community/
 └── README.md            # This file
 ```
 
-## 🎯 Strategic Purpose
-
-These pages support Openwater's strategic goals:
-
-- **Priority #4:** Build community of hundreds of developers
-- **Priority #3:** Generate revenue beyond hardware
-- **Month 1 Goals:** Community infrastructure operational
-- **Q1 2026:** 50+ active contributors
-
 ## 📊 Page Content
 
 ### Community Hub (index.html)
@@ -120,35 +111,6 @@ These pages support Openwater's strategic goals:
 ## 📝 License
 
 MIT License - Feel free to use this as a template.
-
-## 📞 Contact
-
-**Project Lead:** Dan Blizinski  
-**Email:** dblizinski@gmail.com  
-**Role:** Director of Open-Source Business Strategy
-
-**Organization:** Openwater Health  
-**Website:** https://www.openwater.health
-
-## 🙏 Acknowledgments
-
-Built for the Openwater community to support:
-- Open-source medical device innovation
-- Developer onboarding and engagement
-- Community growth and collaboration
-
-## 📈 Metrics & Goals
-
-**Current Community:**
-- 2,000+ active developers
-- 487 contributions (Q4 2024)
-- 50+ participating universities
-- 48 open-source repositories
-
-**Target Goals:**
-- 50+ active contributors by Month 3
-- 150+ by Q2 2026
-- 500+ by end of 2026
 
 ---
 
