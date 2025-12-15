@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community - Openwater</title>
+    <style>
+        :root {
+            --deep-navy: #0A2540;
+            --ocean-blue: #164E63;
+            --primary-teal: #0891B2;
+            --bright-cyan: #06B6D4;
+            --aqua-light: #22D3EE;
+            --aqua-bright: #67E8F9;
+            --light-bg: #F0F9FF;
+            --text-primary: #0F172A;
+            --text-secondary: #475569;
+            --border-color: #E0F2FE;
+            --success-green: #10B981;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+        }
+        
+        /* Hero with Brand Image */
+        .hero {
+            background-image: url('openwater-3.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: white;
+            padding: 140px 20px 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, 
+                rgba(10, 37, 64, 0.75) 0%, 
+                rgba(22, 78, 99, 0.85) 50%,
+                rgba(8, 145, 178, 0.75) 100%
+            );
+            z-index: 1;
+        }
+        
+        .hero-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        }
+        
+        .hero p {
+            font-size: 1.4rem;
+            opacity: 0.95;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--deep-navy);
+            text-align: center;
+        }
+        
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+        
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .about-card {
+            background: white;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .about-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--bright-cyan);
+            box-shadow: 0 12px 40px rgba(8, 145, 178, 0.15);
+        }
+        
+        .about-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-teal), var(--bright-cyan));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2.5rem;
+            box-shadow: 0 8px 20px rgba(8, 145, 178, 0.25);
+        }
+        
+        .about-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--deep-navy);
+        }
+        
+        .about-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+        
+        /* Success Stories */
+        .success-stories {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(8, 145, 178, 0.08);
+        }
+        
+        .story-card {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 40px;
+            padding: 40px;
+            border-bottom: 1px solid var(--border-color);
+            align-items: center;
+        }
+        
+        .story-card:last-child {
+            border-bottom: none;
+        }
+        
+        .story-logo {
+            text-align: center;
+        }
+        
+        .story-logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            padding: 20px;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .story-card:hover .story-logo-text {
+            color: var(--primary-teal);
+            border-color: var(--bright-cyan);
+        }
+        
+        .story-content h3 {
+            font-size: 1.75rem;
+            margin-bottom: 0.5rem;
+            color: var(--deep-navy);
+        }
+        
+        .story-category {
+            color: var(--primary-teal);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .story-tags {
+            display: flex;
+            gap: 10px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+        
+        .tag {
+            background: var(--light-bg);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--primary-teal);
+            border: 1px solid var(--border-color);
+        }
+        
+        /* GitHub Section */
+        .github-section {
+            background: var(--light-bg);
+            border-radius: 16px;
+            padding: 60px 40px;
+            text-align: center;
+        }
+        
+        .github-icon {
+            width: 100px;
+            height: 100px;
+            background: var(--deep-navy);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            font-size: 3rem;
+            color: white;
+            box-shadow: 0 10px 30px rgba(10, 37, 64, 0.3);
+        }
+        
+        .github-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .github-stat {
+            text-align: center;
+        }
+        
+        .github-stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-teal);
+            display: block;
+        }
+        
+        .github-stat-label {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+        }
+        
+        /* Slack Section */
+        .slack-section {
+            background: white;
+            border-radius: 16px;
+            padding: 60px 40px;
+            text-align: center;
+            border: 3px solid var(--border-color);
+        }
+        
+        .slack-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #E01E5A, #36C5F0);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            font-size: 3rem;
+            color: white;
+            box-shadow: 0 10px 30px rgba(224, 30, 90, 0.3);
+        }
+        
+        .slack-benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+            text-align: left;
+        }
+        
+        .slack-benefit {
+            display: flex;
+            align-items: start;
+            gap: 15px;
+        }
+        
+        .slack-benefit-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--light-bg);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+        
+        .slack-benefit h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+            color: var(--deep-navy);
+        }
+        
+        .slack-benefit p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+        
+        /* Social Links */
+        .social-section {
+            background: linear-gradient(135deg, var(--deep-navy), var(--ocean-blue));
+            color: white;
+            padding: 60px 20px;
+            border-radius: 16px;
+        }
+        
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .social-card {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(34, 211, 238, 0.3);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: white;
+            display: block;
+        }
+        
+        .social-card:hover {
+            background: rgba(34, 211, 238, 0.2);
+            border-color: var(--aqua-light);
+            transform: translateY(-5px);
+        }
+        
+        .social-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-teal), var(--bright-cyan));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.8rem;
+        }
+        
+        .social-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .social-card p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+        
+        .btn {
+            padding: 14px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            font-size: 1rem;
+        }
+        
+        .btn-primary {
+            background: var(--bright-cyan);
+            color: var(--deep-navy);
+        }
+        
+        .btn-primary:hover {
+            background: var(--aqua-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(34, 211, 238, 0.3);
+        }
+        
+        .btn-secondary {
+            background: var(--deep-navy);
+            color: white;
+            border: 2px solid var(--deep-navy);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--ocean-blue);
+            border-color: var(--ocean-blue);
+        }
+        
+        .btn-slack {
+            background: #E01E5A;
+            color: white;
+            padding: 16px 32px;
+            font-size: 1.1rem;
+        }
+        
+        .btn-slack:hover {
+            background: #C51950;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(224, 30, 90, 0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .story-card {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-grid,
+            .github-stats,
+            .slack-benefits,
+            .social-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav style="background: white; box-shadow: 0 2px 10px rgba(8, 145, 178, 0.1); padding: 15px 0; position: sticky; top: 0; z-index: 100; border-bottom: 2px solid var(--light-bg);">
+        <div style="max-width: 1400px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center;">
+            <div style="font-size: 1.5rem; font-weight: 700; color: var(--primary-teal);">
+                <a href="index.html" style="text-decoration: none; color: var(--primary-teal);">Openwater</a>
+            </div>
+            <ul style="display: flex; gap: 30px; list-style: none; margin: 0; padding: 0;">
+                <li><a href="index.html" style="text-decoration: none; color: var(--deep-navy); font-weight: 500; transition: color 0.3s;">Home</a></li>
+                <li><a href="developers.html" style="text-decoration: none; color: var(--deep-navy); font-weight: 500; transition: color 0.3s;">Developers</a></li>
+                <li><a href="get-started.html" style="text-decoration: none; color: var(--deep-navy); font-weight: 500; transition: color 0.3s;">Get Started</a></li>
+                <li><a href="community.html" style="text-decoration: none; color: var(--bright-cyan); font-weight: 600;">Community</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Join the Openwater Community</h1>
+            <p>A global movement to democratize medical device innovation</p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section">
+        <h2 class="section-title">About Openwater</h2>
+        <p class="section-subtitle">We're building the Linux of medical devices - open-source platforms for breakthrough healthcare technology</p>
+        
+        <div class="about-grid">
+            <div class="about-card">
+                <div class="about-icon">🌍</div>
+                <h3>Our Mission</h3>
+                <p>Democratize medical device development by making cutting-edge technology accessible to researchers, developers, and clinicians worldwide. We believe healthcare innovation should be open, collaborative, and available to all.</p>
+            </div>
+            
+            <div class="about-card">
+                <div class="about-icon">🔬</div>
+                <h3>Our Technology</h3>
+                <p>OpenLIFU and OpenMOTION are open-source platforms for Low Intensity Focused Ultrasound and optical imaging. Apache 2.0 licensed, FDA breakthrough device designated, and battle-tested in clinical settings.</p>
+            </div>
+            
+            <div class="about-card">
+                <div class="about-icon">🤝</div>
+                <h3>Our Community</h3>
+                <p>2,000+ active developers, researchers from 50+ universities, and partnerships with leading institutions like Mayo Clinic and Stanford. Together, we're accelerating medical innovation by decades.</p>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="get-started.html" class="btn btn-primary">Join the Movement →</a>
+            <a href="developers.html" class="btn btn-secondary">View Technical Docs</a>
+        </div>
+    </section>
+
+    <!-- Success Stories -->
+    <section class="section" style="background: var(--light-bg); margin: 0; padding: 80px 20px;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h2 class="section-title">Success Stories</h2>
+            <p class="section-subtitle">Real impact from the Openwater community</p>
+            
+            <div class="success-stories">
+                <div class="story-card">
+                    <div class="story-logo">
+                        <div class="story-logo-text">Mayo Clinic</div>
+                    </div>
+                    <div class="story-content">
+                        <h3>Mayo Clinic</h3>
+                        <p class="story-category">Clinical AI Integration</p>
+                        <p>Deployed OpenMOTION for stroke detection across 3 comprehensive stroke centers, achieving record sensitivity and specificity in LVO detection. The open-source platform enabled rapid protocol customization and cross-site collaboration that would have been impossible with proprietary systems.</p>
+                        <div class="story-tags">
+                            <span class="tag">Stroke Detection</span>
+                            <span class="tag">Clinical Trials</span>
+                            <span class="tag">151 Patients</span>
+                            <span class="tag">FDA Breakthrough</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="story-card">
+                    <div class="story-logo">
+                        <div class="story-logo-text">Stanford</div>
+                    </div>
+                    <div class="story-content">
+                        <h3>Stanford Neuroscience</h3>
+                        <p class="story-category">Research Innovation</p>
+                        <p>Developed custom OpenLIFU protocols for depression treatment, contributing 15+ pulse sequences back to the community. Their open collaboration model accelerated FDA breakthrough device designation by 18 months compared to traditional closed development.</p>
+                        <div class="story-tags">
+                            <span class="tag">Neuromodulation</span>
+                            <span class="tag">Open Protocols</span>
+                            <span class="tag">FDA Breakthrough</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="story-card">
+                    <div class="story-logo">
+                        <div class="story-logo-text">FreeMoCap</div>
+                    </div>
+                    <div class="story-content">
+                        <h3>FreeMoCap Foundation</h3>
+                        <p class="story-category">Technical Integration</p>
+                        <p>Integrated OpenMOTION's optical tracking with their motion capture ecosystem, creating a comprehensive movement analysis platform for physical therapy and sports medicine. The permissive Apache 2.0 license enabled seamless commercial integration.</p>
+                        <div class="story-tags">
+                            <span class="tag">Motion Tracking</span>
+                            <span class="tag">Open Integration</span>
+                            <span class="tag">Physical Therapy</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="story-card">
+                    <div class="story-logo">
+                        <div class="story-logo-text">Johns Hopkins</div>
+                    </div>
+                    <div class="story-content">
+                        <h3>Johns Hopkins University</h3>
+                        <p class="story-category">Neuroimaging Research</p>
+                        <p>Leveraging OpenLIFU for advanced neuroimaging studies in movement disorders. The open-source architecture allowed researchers to customize ultrasound parameters for specific research questions while contributing improvements back to the community.</p>
+                        <div class="story-tags">
+                            <span class="tag">Neuroimaging</span>
+                            <span class="tag">Research</span>
+                            <span class="tag">Movement Disorders</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GitHub Section -->
+    <section class="section">
+        <h2 class="section-title">Open Source on GitHub</h2>
+        <p class="section-subtitle">All our code is freely available under Apache 2.0 license</p>
+        
+        <div class="github-section">
+            <div class="github-icon">💻</div>
+            <h3 style="font-size: 2rem; margin-bottom: 1rem; color: var(--deep-navy);">OpenwaterHealth</h3>
+            <p style="font-size: 1.1rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto 30px;">
+                Explore our repositories, contribute code, report issues, and collaborate with developers worldwide
+            </p>
+            
+            <div class="github-stats">
+                <div class="github-stat">
+                    <span class="github-stat-number">48</span>
+                    <span class="github-stat-label">Repositories</span>
+                </div>
+                <div class="github-stat">
+                    <span class="github-stat-number">3.2K</span>
+                    <span class="github-stat-label">GitHub Stars</span>
+                </div>
+                <div class="github-stat">
+                    <span class="github-stat-number">487</span>
+                    <span class="github-stat-label">Contributions (Q4)</span>
+                </div>
+                <div class="github-stat">
+                    <span class="github-stat-number">2,000+</span>
+                    <span class="github-stat-label">Contributors</span>
+                </div>
+            </div>
+            
+            <a href="https://github.com/OpenwaterHealth" target="_blank" class="btn btn-primary" style="font-size: 1.1rem; padding: 16px 32px;">
+                View on GitHub →
+            </a>
+        </div>
+    </section>
+
+    <!-- Slack Section -->
+    <section class="section" style="background: var(--light-bg); margin: 0; padding: 80px 20px;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h2 class="section-title">Join Our Slack Community</h2>
+            <p class="section-subtitle">Connect with 2,000+ developers, researchers, and clinicians</p>
+            
+            <div class="slack-section">
+                <div class="slack-icon">💬</div>
+                <h3 style="font-size: 2rem; margin-bottom: 1rem; color: var(--deep-navy);">Real-time Collaboration</h3>
+                <p style="font-size: 1.1rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto 30px;">
+                    Get help, share knowledge, and collaborate with the global Openwater community on Slack
+                </p>
+                
+                <div class="slack-benefits">
+                    <div class="slack-benefit">
+                        <div class="slack-benefit-icon">❓</div>
+                        <div>
+                            <h4>Get Help Fast</h4>
+                            <p>Ask questions and get answers from experienced community members within minutes</p>
+                        </div>
+                    </div>
+                    
+                    <div class="slack-benefit">
+                        <div class="slack-benefit-icon">🔔</div>
+                        <div>
+                            <h4>Stay Updated</h4>
+                            <p>Receive notifications about new releases, opportunities, and community events</p>
+                        </div>
+                    </div>
+                    
+                    <div class="slack-benefit">
+                        <div class="slack-benefit-icon">🤝</div>
+                        <div>
+                            <h4>Network & Collaborate</h4>
+                            <p>Connect with researchers and developers working on similar challenges</p>
+                        </div>
+                    </div>
+                    
+                    <div class="slack-benefit">
+                        <div class="slack-benefit-icon">💡</div>
+                        <div>
+                            <h4>Share Your Work</h4>
+                            <p>Showcase your projects and contributions in #showcase channel</p>
+                        </div>
+                    </div>
+                    
+                    <div class="slack-benefit">
+                        <div class="slack-benefit-icon">💰</div>
+                        <div>
+                            <h4>Find Opportunities</h4>
+                            <p>Discover bounties, grants, and collaboration opportunities</p>
+                        </div>
+                    </div>
+                    
+                    <div class="slack-benefit">
+                        <div class="slack-benefit-icon">📅</div>
+                        <div>
+                            <h4>Join Events</h4>
+                            <p>Participate in weekly office hours and community calls</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <a href="https://join.slack.com/t/openwater/shared_invite/zt-xxxxx" target="_blank" class="btn btn-slack">
+                    Join Slack Workspace →
+                </a>
+                
+                <p style="margin-top: 20px; color: var(--text-secondary); font-size: 0.9rem;">
+                    Free to join • 2,000+ members • Active 24/7
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Links -->
+    <section class="section">
+        <h2 class="section-title">Connect With Us</h2>
+        <p class="section-subtitle">Follow Openwater on social media and stay updated</p>
+        
+        <div class="social-section">
+            <div class="social-grid">
+                <a href="https://twitter.com/OpenwaterHealth" target="_blank" class="social-card">
+                    <div class="social-icon">🐦</div>
+                    <h3>Twitter</h3>
+                    <p>Latest updates, announcements, and community highlights</p>
+                </a>
+                
+                <a href="https://www.linkedin.com/company/openwater" target="_blank" class="social-card">
+                    <div class="social-icon">💼</div>
+                    <h3>LinkedIn</h3>
+                    <p>Professional updates, job opportunities, and partnerships</p>
+                </a>
+                
+                <a href="https://blog.openwater.health" target="_blank" class="social-card">
+                    <div class="social-icon">📝</div>
+                    <h3>Blog</h3>
+                    <p>Technical deep-dives, research findings, and community stories</p>
+                </a>
+                
+                <a href="https://www.youtube.com/@OpenwaterHealth" target="_blank" class="social-card">
+                    <div class="social-icon">📺</div>
+                    <h3>YouTube</h3>
+                    <p>Video tutorials, conference talks, and platform demos</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer CTA -->
+    <section class="section">
+        <div style="background-image: url('openwater-3.png'); background-size: cover; background-position: center; color: white; padding: 60px 40px; border-radius: 16px; text-align: center; position: relative; overflow: hidden;">
+            <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10, 37, 64, 0.85) 0%, rgba(8, 145, 178, 0.85) 100%); z-index: 1;"></div>
+            <div style="position: relative; z-index: 2;">
+                <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Ready to Get Involved?</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.95;">Choose how you'd like to contribute to the Openwater community</p>
+                <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                    <a href="get-started.html" class="btn btn-primary">Get Started</a>
+                    <a href="developers.html" class="btn" style="background: rgba(255,255,255,0.1); border: 2px solid var(--aqua-light); color: white;">Developer Docs</a>
+                    <a href="https://github.com/OpenwaterHealth" class="btn" style="background: rgba(255,255,255,0.1); border: 2px solid var(--aqua-light); color: white;">View GitHub</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background: var(--deep-navy); color: white; padding: 60px 20px; text-align: center;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <p style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem;">Openwater</p>
+            <p style="opacity: 0.8; margin-bottom: 1.5rem;">Open Source. Always.</p>
+            <p style="opacity: 0.7; margin-bottom: 0.5rem;">733 Front Street, Suite C1A, San Francisco, CA 94111</p>
+            <p><a href="mailto:community@openwater.health" style="color: var(--bright-cyan);">community@openwater.health</a></p>
+            <div style="margin-top: 30px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.2);">
+                <p style="opacity: 0.6; font-size: 0.9rem;">&copy; 2025 Openwater Health. Apache 2.0 Licensed.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
