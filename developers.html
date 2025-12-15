@@ -306,9 +306,9 @@
         
         /* Contribution Opportunities */
         .opportunities {
-            background: transparent;  /* Remove duplicate background */
-            border-radius: 0;
-            padding: 0;  /* Remove padding that's causing misalignment */
+            background: var(--light-bg);
+            border-radius: 12px;
+            padding: 40px 0px;  /* ← No horizontal padding! */
         }
         
         .opportunity-filters {
@@ -691,59 +691,57 @@ print(f"Focal volume: {result.focal_volume} mm³")</code></pre>
 
     <!-- Contribution Opportunities -->
     <section class="section" style="background: var(--light-bg); margin: 0; padding: 80px 20px;">
-        <div style="max-width: 1200px; margin: 0 auto;">
-            <h2 class="section-title">Contribution Opportunities</h2>
-            <p class="section-subtitle">Find issues to work on, earn bounties, and apply for grants</p>
-            
-            <div class="opportunities">
-                <div class="opportunity-filters">
-                    <button class="filter-btn active">All</button>
-                    <button class="filter-btn">Good First Issue</button>
-                    <button class="filter-btn">Help Wanted</button>
-                    <button class="filter-btn">Bounties</button>
-                    <button class="filter-btn">Grants</button>
-                </div>
-                
-                <div class="opportunity-list">
-                    <div class="opportunity-item bounty">
-                        <div>
-                            <div class="opportunity-header">
-                                <span class="tag good-first">Good First Issue</span>
-                                <span class="tag bounty-tag">Bounty: $500</span>
-                                <span class="tag">Python</span>
-                            </div>
-                            <h3 class="opportunity-title">Add unit tests for pulse sequence validation</h3>
-                            <p class="opportunity-desc">We need comprehensive unit tests for the pulse sequence validation module.</p>
-                            <div class="opportunity-meta">
-                                <span>📁 OpenLIFU-python</span>
-                                <span>💬 3 comments</span>
-                            </div>
-                        </div>
-                        <div class="opportunity-reward">
-                            <div class="reward-amount">$500</div>
-                            <div class="reward-label">Bounty</div>
-                            <button class="btn btn-primary" style="margin-top: 15px; padding: 8px 16px; font-size: 0.9rem;">View Issue →</button>
-                        </div>
+        <h2 class="section-title">Contribution Opportunities</h2>
+        <p class="section-subtitle">Find issues to work on, earn bounties, and apply for grants</p>
+    
+        <div class="opportunities">
+            <div class="opportunity-filters">
+                <button class="filter-btn active">All</button>
+                <button class="filter-btn">Good First Issue</button>
+                <button class="filter-btn">Help Wanted</button>
+                <button class="filter-btn">Bounties</button>
+                <button class="filter-btn">Grants</button>
+            </div>
+        
+        <div class="opportunity-list">
+            <div class="opportunity-item bounty">
+                <div>
+                    <div class="opportunity-header">
+                        <span class="tag good-first">Good First Issue</span>
+                        <span class="tag bounty-tag">Bounty: $500</span>
+                        <span class="tag">Python</span>
                     </div>
-                    
-                    <div class="opportunity-item grant">
-                        <div>
-                            <div class="opportunity-header">
-                                <span class="tag" style="background: #D1FAE5; color: #065F46;">Community Grant</span>
-                                <span class="tag">Research</span>
-                            </div>
-                            <h3 class="opportunity-title">Develop AI-powered pulse sequence optimization</h3>
-                            <p class="opportunity-desc">Research grant to develop machine learning algorithms that automatically optimize pulse sequences.</p>
-                            <div class="opportunity-meta">
-                                <span>🎯 Major Project</span>
-                                <span>⏱️ 3-6 months</span>
-                            </div>
-                        </div>
-                        <div class="opportunity-reward">
-                            <div class="reward-amount">$10K</div>
-                            <div class="reward-label">Grant</div>
-                            <button class="btn btn-primary" style="margin-top: 15px; padding: 8px 16px; font-size: 0.9rem; background: var(--success-green);">Apply →</button>
-                        </div>
+                    <h3 class="opportunity-title">Add unit tests for pulse sequence validation</h3>
+                    <p class="opportunity-desc">We need comprehensive unit tests for the pulse sequence validation module.</p>
+                    <div class="opportunity-meta">
+                        <span>📁 OpenLIFU-python</span>
+                        <span>💬 3 comments</span>
+                    </div>
+                </div>
+                <div class="opportunity-reward">
+                    <div class="reward-amount">$500</div>
+                    <div class="reward-label">Bounty</div>
+                    <button class="btn btn-primary" style="margin-top: 15px; padding: 8px 16px; font-size: 0.9rem;">View Issue →</button>
+                </div>
+            </div>
+            
+            <div class="opportunity-item grant">
+                <div>
+                    <div class="opportunity-header">
+                        <span class="tag" style="background: #D1FAE5; color: #065F46;">Community Grant</span>
+                        <span class="tag">Research</span>
+                    </div>
+                    <h3 class="opportunity-title">Develop AI-powered pulse sequence optimization</h3>
+                    <p class="opportunity-desc">Research grant to develop machine learning algorithms that automatically optimize pulse sequences.</p>
+                    <div class="opportunity-meta">
+                        <span>🎯 Major Project</span>
+                        <span>⏱️ 3-6 months</span>
+                    </div>
+                </div>
+                <div class="opportunity-reward">
+                    <div class="reward-amount">$10K</div>
+                        <div class="reward-label">Grant</div>
+                        <button class="btn btn-primary" style="margin-top: 15px; padding: 8px 16px; font-size: 0.9rem; background: var(--success-green);">Apply →</button>
                     </div>
                 </div>
             </div>
