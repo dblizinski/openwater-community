@@ -306,9 +306,9 @@
         
         /* Contribution Opportunities */
         .opportunities {
-            background: var(--light-bg);
-            border-radius: 12px;
-            padding: 40px 30px;
+            background: transparent;  /* Remove duplicate background */
+            border-radius: 0;
+            padding: 0;  /* Remove padding that's causing misalignment */
         }
         
         .opportunity-filters {
