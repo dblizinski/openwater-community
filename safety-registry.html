@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safety Registry | Openwater Community</title>
+    <style>
+        /* Matching Exact Design System from openwater-community site */
+        :root {
+            --deep-navy: #0A2540;
+            --ocean-blue: #164E63;
+            --primary-teal: #0891B2;
+            --bright-cyan: #06B6D4;
+            --aqua-light: #22D3EE;
+            --aqua-bright: #67E8F9;
+            --white: #FFFFFF;
+            --light-bg: #F0F9FF;
+            --text-primary: #0F172A;
+            --text-secondary: #475569;
+            --border-color: #E0F2FE;
+            --success-green: #10B981;
+            --safety-orange: #F59E0B;
+            --safety-red: #EF4444;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+        }
+
+        /* Navigation - Exact Match */
+        nav {
+            background: white;
+            box-shadow: 0 2px 10px rgba(10, 37, 64, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+        
+        .logo img {
+            height: 40px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary-teal);
+        }
+
+        /* Hero - Safety Theme with Green Gradient */
+        .hero {
+            background-image: url('openwater-3.png');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 140px 20px 100px;
+            text-align: center;
+            position: relative;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                rgba(10, 37, 64, 0.85) 0%,
+                rgba(8, 145, 178, 0.85) 100%);
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.95;
+        }
+
+        /* Alert Box - Status Banner */
+        .alert {
+            max-width: 1200px;
+            margin: -3rem auto 0;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .alert-content {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 8px 30px rgba(10, 37, 64, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border: 2px solid var(--border-color);
+        }
+        
+        .alert-icon {
+            font-size: 2rem;
+        }
+        
+        .alert-text h4 {
+            color: var(--deep-navy);
+            margin-bottom: 0.25rem;
+        }
+        
+        .alert-text p {
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        /* Stats Dashboard - Matching Hero Stats Style */
+        .stats-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 2rem 3rem;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2rem;
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(10, 37, 64, 0.08);
+            text-align: center;
+            border: 2px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(10, 37, 64, 0.15);
+            border-color: var(--bright-cyan);
+        }
+        
+        .stat-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .stat-number {
+            display: block;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--deep-navy);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            display: block;
+            font-size: 1rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        /* Section - Exact Match */
+        .section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--deep-navy);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+        }
+
+        /* Safety Report Cards - Matching Standard Card Style */
+        .safety-grid {
+            display: grid;
+            gap: 2rem;
+        }
+        
+        .safety-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(10, 37, 64, 0.08);
+            border: 2px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+        
+        .safety-card:hover {
+            box-shadow: 0 12px 40px rgba(10, 37, 64, 0.15);
+            transform: translateY(-5px);
+            border-color: var(--bright-cyan);
+        }
+        
+        .safety-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .severity-badge {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: white;
+        }
+        
+        .severity-badge.minor {
+            background: var(--success-green);
+        }
+        
+        .severity-badge.moderate {
+            background: var(--safety-orange);
+        }
+        
+        .severity-badge.serious {
+            background: var(--safety-red);
+        }
+        
+        .report-id {
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .safety-card h4 {
+            font-size: 1.3rem;
+            color: var(--deep-navy);
+            margin-bottom: 1rem;
+        }
+        
+        .safety-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--light-bg);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .safety-details p {
+            margin: 0;
+            color: var(--text-secondary);
+        }
+        
+        .safety-details strong {
+            color: var(--deep-navy);
+        }
+        
+        .status-resolved {
+            color: var(--success-green);
+            font-weight: 600;
+        }
+        
+        .safety-summary {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Timeline - Vertical List */
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 1rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border-color);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+        }
+        
+        .timeline-marker {
+            position: absolute;
+            left: -2.5rem;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-teal), var(--bright-cyan));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+            box-shadow: 0 4px 10px rgba(8, 145, 178, 0.3);
+        }
+        
+        .timeline-content {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 20px rgba(10, 37, 64, 0.08);
+            border: 2px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-content:hover {
+            border-color: var(--bright-cyan);
+        }
+        
+        .timeline-content h4 {
+            color: var(--deep-navy);
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-content p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+        
+        .timeline-content a {
+            color: var(--primary-teal);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* Compliance Grid */
+        .compliance-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .compliance-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(10, 37, 64, 0.08);
+            text-align: center;
+            border: 2px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+        
+        .compliance-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(10, 37, 64, 0.15);
+            border-color: var(--bright-cyan);
+        }
+        
+        .compliance-card .stat-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .compliance-card h3 {
+            color: var(--deep-navy);
+            margin-bottom: 0.5rem;
+        }
+        
+        .compliance-card p {
+            color: var(--text-secondary);
+        }
+
+        /* Buttons - Exact Match */
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-teal), var(--bright-cyan));
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(8, 145, 178, 0.3);
+        }
+        
+        .btn-sm {
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+        }
+
+        /* CTA Section - Matching Footer CTA Style */
+        .cta-section {
+            background-image: url('openwater-3.png');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+            margin: 5rem 0;
+            border-radius: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                rgba(10, 37, 64, 0.9) 0%,
+                rgba(8, 145, 178, 0.9) 100%);
+            z-index: 1;
+        }
+        
+        .cta-section > * {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Info Box */
+        .info-box {
+            background: var(--light-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border: 2px solid var(--border-color);
+        }
+        
+        .info-box h4 {
+            color: var(--deep-navy);
+            margin-bottom: 0.5rem;
+        }
+        
+        .info-box p {
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        /* Footer - Exact Match */
+        footer {
+            background: var(--deep-navy);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        
+        footer p {
+            margin: 0.5rem 0;
+            opacity: 0.8;
+        }
+        
+        footer a {
+            color: var(--bright-cyan);
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .safety-details {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation - Exact Match -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="openwater-logo.png" alt="Openwater">
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="developers.html">Developers</a></li>
+                <li><a href="get-started.html">Get Started</a></li>
+                <li><a href="community.html">Community</a></li>
+                <li><a href="model-commons.html">Model Commons</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Transparent Safety Monitoring</h1>
+            <p>FDA-compliant post-market surveillance with full transparency. Every adverse event tracked, reported, and resolved publicly.</p>
+        </div>
+    </section>
+
+    <!-- Alert Status -->
+    <div class="alert">
+        <div class="alert-content">
+            <div class="alert-icon">✅</div>
+            <div class="alert-text">
+                <h4>All Systems Operational</h4>
+                <p>No serious adverse events reported. All recent reports resolved within SLA. Last update: December 17, 2024</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Safety Dashboard -->
+    <div class="stats-section">
+        <div class="section-header">
+            <h2 class="section-title">Safety Dashboard</h2>
+            <p class="section-subtitle">Real-time monitoring across all Openwater devices</p>
+        </div>
+
+        <div class="stats">
+            <div class="stat-card success">
+                <div class="stat-icon">✅</div>
+                <span class="stat-number">127</span>
+                <span class="stat-label">Days Since Last Incident</span>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">📊</div>
+                <span class="stat-number">8</span>
+                <span class="stat-label">Reports This Quarter</span>
+            </div>
+
+            <div class="stat-card success">
+                <div class="stat-icon">⏱️</div>
+                <span class="stat-number">3.2</span>
+                <span class="stat-label">Avg Resolution (Days)</span>
+            </div>
+
+            <div class="stat-card success">
+                <div class="stat-icon">🎯</div>
+                <span class="stat-number">100%</span>
+                <span class="stat-label">Resolved Within SLA</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Safety Reports -->
+    <section class="section" style="background: var(--light-bg);">
+        <div class="section-header">
+            <h2 class="section-title">Recent Safety Reports</h2>
+            <p class="section-subtitle">Last 90 days of adverse event tracking</p>
+        </div>
+
+        <div class="safety-grid">
+            <div class="safety-card minor">
+                <div class="safety-header">
+                    <span class="severity-badge minor">Minor</span>
+                    <span class="report-id">#SR-2024-008</span>
+                </div>
+                <h4>Device Connectivity Issue During Setup</h4>
+                <div class="safety-details">
+                    <p><strong>Device:</strong> OpenLIFU Gen 2</p>
+                    <p><strong>Event Date:</strong> Dec 10, 2024</p>
+                    <p><strong>Status:</strong> <span class="status-resolved">Resolved</span></p>
+                </div>
+                <p class="safety-summary">
+                    User reported difficulty connecting device to institutional network during initial setup. 
+                    No patient impact. Resolved through updated network configuration guide and IT support training.
+                </p>
+                <a href="#" class="btn btn-sm btn-primary">View Full Report →</a>
+            </div>
+
+            <div class="safety-card moderate">
+                <div class="safety-header">
+                    <span class="severity-badge moderate">Moderate</span>
+                    <span class="report-id">#SR-2024-007</span>
+                </div>
+                <h4>Transient Discomfort During Treatment</h4>
+                <div class="safety-details">
+                    <p><strong>Device:</strong> OpenLIFU Gen 2</p>
+                    <p><strong>Event Date:</strong> Nov 15, 2024</p>
+                    <p><strong>Status:</strong> <span class="status-resolved">Resolved</span></p>
+                </div>
+                <p class="safety-summary">
+                    Patient reported mild headache during ultrasound treatment session. Symptoms resolved 
+                    within 2 hours without intervention. Protocol adjusted to include gradual intensity ramp-up 
+                    for first-time patients. No long-term effects observed in 30-day follow-up.
+                </p>
+                <a href="#" class="btn btn-sm btn-primary">View Full Report →</a>
+            </div>
+
+            <div class="safety-card minor">
+                <div class="safety-header">
+                    <span class="severity-badge minor">Minor</span>
+                    <span class="report-id">#SR-2024-006</span>
+                </div>
+                <h4>Software Update Notification Delay</h4>
+                <div class="safety-details">
+                    <p><strong>Device:</strong> OpenMOTION v3.0</p>
+                    <p><strong>Event Date:</strong> Oct 28, 2024</p>
+                    <p><strong>Status:</strong> <span class="status-resolved">Resolved</span></p>
+                </div>
+                <p class="safety-summary">
+                    Delayed notification of available software security update. No data breach or patient impact. 
+                    Notification system enhanced with redundant channels (email + in-app + SMS).
+                </p>
+                <a href="#" class="btn btn-sm btn-primary">View Full Report →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quarterly Summaries -->
+    <section class="section">
+        <div class="section-header">
+            <h2 class="section-title">Quarterly Safety Summaries</h2>
+            <p class="section-subtitle">Comprehensive reports submitted to FDA</p>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-marker">Q4</div>
+                <div class="timeline-content">
+                    <h4>Q4 2024 Safety Summary</h4>
+                    <p>8 reports filed (6 minor, 2 moderate, 0 serious). All resolved within 7-day SLA. 
+                    Protocol improvements implemented for patient comfort. Zero serious adverse events.</p>
+                    <a href="#">Download Full Report (PDF) →</a>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-marker">Q3</div>
+                <div class="timeline-content">
+                    <h4>Q3 2024 Safety Summary</h4>
+                    <p>5 reports filed (4 minor, 1 moderate, 0 serious). Software stability improvements 
+                    deployed. Enhanced user training materials developed.</p>
+                    <a href="#">Download Full Report (PDF) →</a>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-marker">Q2</div>
+                <div class="timeline-content">
+                    <h4>Q2 2024 Safety Summary</h4>
+                    <p>11 reports filed (9 minor, 2 moderate, 0 serious). Network connectivity documentation 
+                    improved. Clinical site IT support protocols established.</p>
+                    <a href="#">Download Full Report (PDF) →</a>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-marker">Q1</div>
+                <div class="timeline-content">
+                    <h4>Q1 2024 Safety Summary</h4>
+                    <p>3 reports filed (3 minor, 0 moderate, 0 serious). Early deployment phase with 
+                    limited sites. All issues resolved through documentation updates.</p>
+                    <a href="#">Download Full Report (PDF) →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FDA Compliance -->
+    <section class="section" style="background: var(--light-bg);">
+        <div class="section-header">
+            <h2 class="section-title">FDA Compliance & MAUDE Integration</h2>
+            <p class="section-subtitle">Meeting federal requirements for post-market surveillance</p>
+        </div>
+
+        <div class="info-box">
+            <h4>📋 Regulatory Compliance</h4>
+            <p>
+                All adverse events are reported to the FDA through the MAUDE (Manufacturer and User Facility 
+                Device Experience) database within required timelines. Serious events reported within 30 days, 
+                malfunctions within 5 business days. Full transparency maintained through this public registry.
+            </p>
+        </div>
+
+        <div class="compliance-grid">
+            <div class="compliance-card">
+                <div class="stat-icon">⏱️</div>
+                <h3>7-Day SLA</h3>
+                <p>Internal review & resolution target</p>
+            </div>
+            <div class="compliance-card">
+                <div class="stat-icon">📊</div>
+                <h3>Quarterly Reports</h3>
+                <p>Comprehensive FDA submissions</p>
+            </div>
+            <div class="compliance-card">
+                <div class="stat-icon">🔔</div>
+                <h3>Community Alerts</h3>
+                <p>Immediate notification system</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Report CTA -->
+    <section class="section">
+        <div class="cta-section">
+            <h2>Report a Safety Event</h2>
+            <p>
+                Help us maintain the highest safety standards. All reports are confidential and 
+                contribute to continuous improvement.
+            </p>
+            <a href="#report" class="btn btn-primary">Submit Safety Report →</a>
+        </div>
+    </section>
+
+    <!-- Footer - Exact Match -->
+    <footer>
+        <p>© 2025 Openwater Health. Open Source. Always.</p>
+        <p>Safety Hotline: 1-800-OPENWATER</p>
+        <p><a href="mailto:safety@openwater.health">safety@openwater.health</a></p>
+    </footer>
+
+</body>
+</html>

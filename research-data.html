@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Data | Openwater Community</title>
+    <style>
+        /* Matching Exact Design System from openwater-community site */
+        :root {
+            --deep-navy: #0A2540;
+            --ocean-blue: #164E63;
+            --primary-teal: #0891B2;
+            --bright-cyan: #06B6D4;
+            --aqua-light: #22D3EE;
+            --aqua-bright: #67E8F9;
+            --white: #FFFFFF;
+            --light-bg: #F0F9FF;
+            --text-primary: #0F172A;
+            --text-secondary: #475569;
+            --border-color: #E0F2FE;
+            --success-green: #10B981;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+        }
+
+        /* Navigation - Exact Match */
+        nav {
+            background: white;
+            box-shadow: 0 2px 10px rgba(10, 37, 64, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+        
+        .logo img {
+            height: 40px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary-teal);
+        }
+
+        /* Hero - Exact Match with Brand Image */
+        .hero {
+            background-image: url('openwater-3.png');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 140px 20px 100px;
+            text-align: center;
+            position: relative;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                rgba(10, 37, 64, 0.85) 0%,
+                rgba(8, 145, 178, 0.85) 100%);
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.95;
+        }
+
+        /* Stats Container - Exact Match */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 3rem auto 0;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .stat {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .stat-number {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--aqua-bright);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            display: block;
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Section - Exact Match */
+        .section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--deep-navy);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+        }
+
+        /* Cards Grid - Exact Match to "How You Can Contribute" */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(10, 37, 64, 0.08);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(10, 37, 64, 0.15);
+            border-color: var(--bright-cyan);
+        }
+        
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .card h3 {
+            font-size: 1.5rem;
+            color: var(--deep-navy);
+            margin-bottom: 1rem;
+        }
+        
+        .card p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+        
+        .card ul {
+            list-style: none;
+            margin: 1rem 0;
+        }
+        
+        .card li {
+            color: var(--text-secondary);
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .card li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--bright-cyan);
+            font-weight: 700;
+        }
+
+        /* Dataset Cards - Similar to Success Stories */
+        .dataset-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 2rem;
+        }
+        
+        .dataset-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(10, 37, 64, 0.08);
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .dataset-card:hover {
+            border-color: var(--bright-cyan);
+            box-shadow: 0 12px 40px rgba(10, 37, 64, 0.15);
+            transform: translateY(-5px);
+        }
+        
+        .dataset-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .dataset-badge {
+            background: linear-gradient(135deg, var(--primary-teal), var(--bright-cyan));
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        .dataset-size {
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+        
+        .dataset-card h3 {
+            font-size: 1.3rem;
+            color: var(--deep-navy);
+            margin-bottom: 1rem;
+        }
+        
+        .dataset-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1rem 0;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        
+        .dataset-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        /* Buttons - Exact Match */
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-teal), var(--bright-cyan));
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(8, 145, 178, 0.3);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary-teal);
+            border: 2px solid var(--primary-teal);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--primary-teal);
+            color: white;
+        }
+
+        /* CTA Section - Matching Footer CTA Style */
+        .cta-section {
+            background-image: url('openwater-3.png');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+            margin: 5rem 0;
+            border-radius: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                rgba(10, 37, 64, 0.9) 0%,
+                rgba(8, 145, 178, 0.9) 100%);
+            z-index: 1;
+        }
+        
+        .cta-section > * {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Footer - Exact Match */
+        footer {
+            background: var(--deep-navy);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        
+        footer p {
+            margin: 0.5rem 0;
+            opacity: 0.8;
+        }
+        
+        footer a {
+            color: var(--bright-cyan);
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .card-grid,
+            .dataset-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation - Exact Match -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="openwater-logo.png" alt="Openwater">
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="developers.html">Developers</a></li>
+                <li><a href="get-started.html">Get Started</a></li>
+                <li><a href="community.html">Community</a></li>
+                <li><a href="model-commons.html">Model Commons</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Open Research Data Ecosystem</h1>
+            <p>Accelerating medical device innovation through transparent data sharing and collaborative research</p>
+            
+            <div class="stats">
+                <div class="stat">
+                    <span class="stat-number">45+</span>
+                    <span class="stat-label">Shared Datasets</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">2.5TB</span>
+                    <span class="stat-label">Total Data Size</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">150+</span>
+                    <span class="stat-label">Published Studies</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">200+</span>
+                    <span class="stat-label">Active Contributors</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Three-Repository Architecture -->
+    <section class="section">
+        <div class="section-header">
+            <h2 class="section-title">Three-Repository Architecture</h2>
+            <p class="section-subtitle">Purpose-built infrastructure for open science</p>
+        </div>
+
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-icon">📚</div>
+                <h3>awesome-openwater</h3>
+                <p>Curated collection of publications, tutorials, and community resources</p>
+                <ul>
+                    <li>150+ research papers</li>
+                    <li>Community tutorials</li>
+                    <li>Clinical case studies</li>
+                    <li>Quick reference links</li>
+                </ul>
+                <a href="https://github.com/OpenwaterHealth/awesome-openwater" class="btn btn-primary">Browse Library →</a>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">📊</div>
+                <h3>openwater-research-data</h3>
+                <p>Full datasets with DOIs, peer-reviewed analysis, and reproducible code</p>
+                <ul>
+                    <li>45+ clinical datasets</li>
+                    <li>2.5TB of data</li>
+                    <li>DOI-minted for citation</li>
+                    <li>Peer-reviewed quality</li>
+                </ul>
+                <a href="#datasets" class="btn btn-primary">Explore Datasets →</a>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">⚠️</div>
+                <h3>openwater-safety-registry</h3>
+                <p>Transparent adverse event tracking and FDA-compliant post-market surveillance</p>
+                <ul>
+                    <li>Real-time dashboard</li>
+                    <li>127 days incident-free</li>
+                    <li>100% resolved in SLA</li>
+                    <li>Quarterly FDA reports</li>
+                </ul>
+                <a href="safety-registry.html" class="btn btn-primary">View Safety Data →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Datasets -->
+    <section class="section" id="datasets" style="background: var(--light-bg);">
+        <div class="section-header">
+            <h2 class="section-title">Featured Datasets</h2>
+            <p class="section-subtitle">Peer-reviewed, DOI-minted clinical data</p>
+        </div>
+
+        <div class="dataset-grid">
+            <div class="dataset-card">
+                <div class="dataset-header">
+                    <span class="dataset-badge">Clinical Data</span>
+                    <span class="dataset-size">1.2 GB</span>
+                </div>
+                <h3>OpenLIFU Neuromodulation Study 2024</h3>
+                <p>Multi-site clinical trial data from 50 participants receiving low-intensity focused ultrasound treatment for essential tremor. Includes imaging data, treatment parameters, and 6-month follow-up assessments.</p>
+                <div class="dataset-meta">
+                    <span>📅 Published: Jan 2024</span>
+                    <span>👥 Contributors: 12</span>
+                    <span>📄 DOI: 10.5281/zenodo.123456</span>
+                </div>
+                <div class="dataset-actions">
+                    <a href="#" class="btn btn-primary">Download Dataset</a>
+                    <a href="#" class="btn btn-secondary">View Metadata</a>
+                </div>
+            </div>
+
+            <div class="dataset-card">
+                <div class="dataset-header">
+                    <span class="dataset-badge">Imaging Data</span>
+                    <span class="dataset-size">3.8 GB</span>
+                </div>
+                <h3>OpenMOTION Stroke Recovery Imaging</h3>
+                <p>Longitudinal near-infrared imaging data tracking cerebral blood flow during stroke rehabilitation. 30 patients, 90-day monitoring period with weekly assessments.</p>
+                <div class="dataset-meta">
+                    <span>📅 Published: Feb 2024</span>
+                    <span>👥 Contributors: 8</span>
+                    <span>📄 DOI: 10.5281/zenodo.123457</span>
+                </div>
+                <div class="dataset-actions">
+                    <a href="#" class="btn btn-primary">Download Dataset</a>
+                    <a href="#" class="btn btn-secondary">View Metadata</a>
+                </div>
+            </div>
+
+            <div class="dataset-card">
+                <div class="dataset-header">
+                    <span class="dataset-badge">Analysis Code</span>
+                    <span class="dataset-size">156 MB</span>
+                </div>
+                <h3>Machine Learning Algorithms for LIFU Targeting</h3>
+                <p>Open-source algorithms for automated skull density correction and acoustic beam steering. Includes training data, model weights, and validation benchmarks.</p>
+                <div class="dataset-meta">
+                    <span>📅 Published: Mar 2024</span>
+                    <span>👥 Contributors: 15</span>
+                    <span>📄 DOI: 10.5281/zenodo.123458</span>
+                </div>
+                <div class="dataset-actions">
+                    <a href="#" class="btn btn-primary">Download Code</a>
+                    <a href="#" class="btn btn-secondary">View Documentation</a>
+                </div>
+            </div>
+
+            <div class="dataset-card">
+                <div class="dataset-header">
+                    <span class="dataset-badge">Veterinary Data</span>
+                    <span class="dataset-size">892 MB</span>
+                </div>
+                <h3>Canine Oncology Treatment Outcomes</h3>
+                <p>Tumor response data from 25 canine patients treated with focused ultrasound. Includes MRI imaging, pathology reports, and quality-of-life assessments.</p>
+                <div class="dataset-meta">
+                    <span>📅 Published: Apr 2024</span>
+                    <span>👥 Contributors: 6</span>
+                    <span>📄 DOI: 10.5281/zenodo.123459</span>
+                </div>
+                <div class="dataset-actions">
+                    <a href="#" class="btn btn-primary">Download Dataset</a>
+                    <a href="#" class="btn btn-secondary">View Metadata</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section">
+        <div class="cta-section">
+            <h2>Contribute Your Research</h2>
+            <p>Share your datasets, earn DOIs, and join a global community advancing medical device innovation. All submissions undergo peer review and receive proper attribution.</p>
+            <a href="#submit" class="btn btn-primary">Submit Dataset →</a>
+        </div>
+    </section>
+
+    <!-- Footer - Exact Match -->
+    <footer>
+        <p>© 2025 Openwater Health. Open Source. Always.</p>
+        <p>733 Front Street, Suite C1A, San Francisco, CA 94111</p>
+        <p><a href="mailto:research@openwater.health">research@openwater.health</a></p>
+    </footer>
+
+</body>
+</html>
