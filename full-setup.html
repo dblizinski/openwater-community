@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Setup Guide - Openwater Community</title>
+
+    <!-- SAME DESIGN SYSTEM AS GET STARTED -->
+    <style>
+        :root {
+            --deep-navy: #0A2540;
+            --ocean-blue: #164E63;
+            --primary-teal: #0891B2;
+            --bright-cyan: #06B6D4;
+            --aqua-light: #22D3EE;
+            --aqua-bright: #67E8F9;
+            --white: #FFFFFF;
+            --light-bg: #F0F9FF;
+            --text-primary: #0F172A;
+            --text-secondary: #475569;
+            --border-color: #E0F2FE;
+            --success-green: #10B981;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+        }
+
+        nav {
+            background: white;
+            box-shadow: 0 2px 10px rgba(10, 37, 64, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img { height: 40px; }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .nav-links a.active { color: var(--primary-teal); }
+
+        .hero {
+            background-image: url('openwater-3.png');
+            background-size: cover;
+            background-position: center;
+            padding: 90px 20px;
+            color: white;
+            position: relative;
+            text-align: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg,
+                rgba(10,37,64,0.85),
+                rgba(8,145,178,0.85));
+        }
+
+        .hero-content {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+        }
+
+        .section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--deep-navy);
+        }
+
+        .section-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+        }
+
+        .step {
+            background: white;
+            border: 2px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .step h3 {
+            color: var(--deep-navy);
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+        }
+
+        .step h4 {
+            color: var(--primary-teal);
+            margin-top: 1.5rem;
+        }
+
+        .step p, .step ul {
+            color: var(--text-secondary);
+        }
+
+        .step ul {
+            margin-left: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .code-block {
+            background: var(--deep-navy);
+            color: var(--aqua-light);
+            padding: 1.5rem;
+            border-radius: 10px;
+            font-family: monospace;
+            font-size: 0.9rem;
+            margin: 1rem 0;
+            overflow-x: auto;
+        }
+
+        .checklist {
+            background: var(--light-bg);
+            border-radius: 16px;
+            border: 2px solid var(--border-color);
+            padding: 2rem;
+        }
+
+        .checklist-item {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .checklist-item:last-child { border-bottom: none; }
+
+        footer {
+            background: var(--deep-navy);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        footer a { color: var(--bright-cyan); text-decoration: none; }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav>
+    <div class="nav-container">
+        <a href="index.html" class="logo">
+            <img src="openwater-logo.png" alt="Openwater">
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="developers.html">Developers</a></li>
+            <li><a href="get-started.html" class="active">Get Started</a></li>
+            <li><a href="community.html">Community</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>Full Setup Guide</h1>
+        <p>Production-ready environment for Openwater software & hardware contributors</p>
+    </div>
+</section>
+
+<!-- OVERVIEW -->
+<section class="section">
+    <div class="section-header">
+        <h2 class="section-title">What This Guide Covers</h2>
+        <p class="section-subtitle">
+            A complete setup from zero → validated contributor environment
+        </p>
+    </div>
+
+    <div class="checklist">
+        <div class="checklist-item">✔ System requirements & prerequisites</div>
+        <div class="checklist-item">✔ Docker & local Python environments</div>
+        <div class="checklist-item">✔ Repo structure & workflows</div>
+        <div class="checklist-item">✔ Testing, validation, and linting</div>
+        <div class="checklist-item">✔ Hardware + firmware setup (optional)</div>
+        <div class="checklist-item">✔ Common issues & recovery steps</div>
+    </div>
+</section>
+
+<!-- STEP 1 -->
+<section class="section">
+    <div class="step">
+        <h3>1. System Requirements</h3>
+        <ul>
+            <li>macOS, Linux, or Windows 10+</li>
+            <li>Python 3.10+</li>
+            <li>Git (latest)</li>
+            <li>Docker Desktop (recommended)</li>
+            <li>8GB RAM minimum (16GB preferred)</li>
+        </ul>
+    </div>
+
+    <div class="step">
+        <h3>2. Clone the Repository</h3>
+        <div class="code-block">
+git clone https://github.com/OpenwaterHealth/OpenLIFU-python.git
+cd OpenLIFU-python
+git remote add upstream https://github.com/OpenwaterHealth/OpenLIFU-python.git
+        </div>
+    </div>
+
+    <div class="step">
+        <h3>3. Environment Setup</h3>
+
+        <h4>Option A — Docker (Recommended)</h4>
+        <div class="code-block">
+docker pull openwaterhealth/dev-env:latest
+docker run -it -v $(pwd):/workspace openwaterhealth/dev-env
+        </div>
+
+        <h4>Option B — Local Python</h4>
+        <div class="code-block">
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+        </div>
+    </div>
+
+    <div class="step">
+        <h3>4. Verify Installation</h3>
+        <div class="code-block">
+pytest tests/
+python examples/hello_world.py
+        </div>
+        <p>
+            All tests should pass. If not, see troubleshooting below.
+        </p>
+    </div>
+
+    <div class="step">
+        <h3>5. Optional: Hardware & Firmware Setup</h3>
+        <ul>
+            <li>Install KiCad (PCB design)</li>
+            <li>FreeCAD or Fusion 360 (mechanical)</li>
+            <li>Clone relevant hardware repos</li>
+        </ul>
+    </div>
+
+    <div class="step">
+        <h3>6. Troubleshooting</h3>
+        <ul>
+            <li><strong>Dependency conflicts:</strong> Recreate venv or Docker image</li>
+            <li><strong>Test failures:</strong> Ensure Python version matches repo</li>
+            <li><strong>Docker permission issues:</strong> Restart Docker Desktop</li>
+        </ul>
+        <p>
+            Still stuck? Ask in <strong>#help</strong> on Discord.
+        </p>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <p>© 2025 Openwater Health. Open Source. Always.</p>
+    <p><a href="mailto:community@openwater.health">community@openwater.health</a></p>
+</footer>
+
+</body>
+</html>
