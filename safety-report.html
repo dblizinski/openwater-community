@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report a Safety Event | Openwater Community</title>
+
+    <style>
+        :root {
+            --deep-navy: #0A2540;
+            --ocean-blue: #164E63;
+            --primary-teal: #0891B2;
+            --bright-cyan: #06B6D4;
+            --aqua-light: #22D3EE;
+            --white: #FFFFFF;
+            --light-bg: #F0F9FF;
+            --text-primary: #0F172A;
+            --text-secondary: #475569;
+            --border-color: #E0F2FE;
+            --success-green: #10B981;
+            --safety-orange: #F59E0B;
+            --safety-red: #EF4444;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        nav {
+            background: white;
+            box-shadow: 0 2px 10px rgba(10, 37, 64, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img { height: 40px; }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .hero {
+            background-image: url('openwater-3.png');
+            background-size: cover;
+            background-position: center;
+            padding: 120px 20px;
+            text-align: center;
+            position: relative;
+            color: white;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg,
+                rgba(10,37,64,0.9),
+                rgba(8,145,178,0.9));
+        }
+
+        .hero-content {
+            position: relative;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+        }
+
+        .section {
+            max-width: 900px;
+            margin: auto;
+            padding: 4rem 2rem;
+        }
+
+        .info-box {
+            background: var(--light-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .info-box h4 {
+            color: var(--deep-navy);
+            margin-bottom: 0.5rem;
+        }
+
+        form {
+            background: white;
+            border-radius: 16px;
+            padding: 2.5rem;
+            box-shadow: 0 8px 30px rgba(10, 37, 64, 0.1);
+            border: 2px solid var(--border-color);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--deep-navy);
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 8px;
+            border: 2px solid var(--border-color);
+            font-size: 1rem;
+        }
+
+        textarea { min-height: 140px; }
+
+        .btn {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.9rem 1.75rem;
+            border-radius: 8px;
+            background: linear-gradient(135deg, var(--primary-teal), var(--bright-cyan));
+            color: white;
+            font-weight: 600;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        footer {
+            background: var(--deep-navy);
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        footer a {
+            color: var(--bright-cyan);
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+
+<body>
+
+<nav>
+    <div class="nav-container">
+        <a href="index.html" class="logo">
+            <img src="openwater-logo.png" alt="Openwater">
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="developers.html">Developers</a></li>
+            <li><a href="get-started.html">Get Started</a></li>
+            <li><a href="community.html">Community</a></li>
+            <li><a href="model-commons.html">Model Commons</a></li>
+        </ul>
+    </div>
+</nav>
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>Report a Safety Event</h1>
+        <p>Confidential FDA-compliant reporting for adverse events, malfunctions, or near misses.</p>
+    </div>
+</section>
+
+<section class="section">
+
+    <div class="info-box">
+        <h4>🔒 Confidential & Transparent</h4>
+        <p>
+            Reports may be submitted by clinicians, researchers, engineers, or users.
+            All submissions are reviewed by Openwater Safety & Quality and reported to the FDA
+            as required under post-market surveillance regulations.
+        </p>
+    </div>
+
+    <form>
+        <div class="form-group">
+            <label for="reporter">Your Role</label>
+            <select id="reporter">
+                <option>Clinician</option>
+                <option>Researcher</option>
+                <option>Engineer</option>
+                <option>Clinical Staff</option>
+                <option>Other</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="device">Device / Software</label>
+            <input id="device" placeholder="e.g. OpenLIFU Gen 2, OpenMOTION v3.0">
+        </div>
+
+        <div class="form-group">
+            <label for="severity">Event Severity</label>
+            <select id="severity">
+                <option>Minor (no patient impact)</option>
+                <option>Moderate (transient symptoms)</option>
+                <option>Serious (injury, hospitalization, death)</option>
+                <option>Near Miss</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="date">Event Date</label>
+            <input type="date" id="date">
+        </div>
+
+        <div class="form-group">
+            <label for="description">Event Description</label>
+            <textarea id="description" placeholder="Describe what happened, observed effects, and outcome."></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="contact">Contact Email (optional)</label>
+            <input type="email" id="contact" placeholder="name@institution.org">
+        </div>
+
+        <button class="btn">Submit Safety Report</button>
+    </form>
+
+</section>
+
+<footer>
+    <p>© 2025 Openwater Health. Open Source. Always.</p>
+    <p>Safety Hotline: 1-800-OPENWATER</p>
+    <p><a href="mailto:safety@openwater.health">safety@openwater.health</a></p>
+</footer>
+
+</body>
+</html>
